@@ -4,8 +4,8 @@ in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Joshua Giambattista.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -53,7 +53,28 @@ def draw_upside_down_wall(rectangle, n, window):
     # TODO: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # -------------------------------------------------------------------------
+    move_up = rectangle.get_height()
+    move_over = rectangle.get_width()/2
+    rectangle.attach_to(window)
+    l = 1
+    x1 = rectangle.corner_1.x - move_over
+    y1 = rectangle.corner_1.y - move_up
+    x2 = rectangle.corner_2.x - move_over
+    y2 = rectangle.corner_2.y - move_up
+    for k in range(n):
+        for j in range(l):
+            rec1 = rg.Rectangle(rg.Point(x1,y1), rg.Point(x2,y2))
+            rec1.attach_to(window)
+            x1 = x1 + rectangle.get_width()
+            x2 = x2 + rectangle.get_width()
+        x1 = rectangle.corner_1.x - (move_over*(k+1))
+        y1 = rectangle.corner_1.y - (move_up*(k+1))
+        x2 = rectangle.corner_2.x - (move_over*(k+1))
+        y2 = rectangle.corner_2.y - (move_up*(k+1))
+        l=l+1
 
+
+    window.render()
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
